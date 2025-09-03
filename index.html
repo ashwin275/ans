@@ -54,7 +54,7 @@
       >
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
-          <img src="assets/img/logo2.png" alt="ANS" class="img-fluid"  />
+          <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" />
           <!-- <h1 class="sitename">ANS</h1> -->
         </a>
 
@@ -1463,6 +1463,62 @@
             <!-- Contact Form -->
             <div class="col-lg-6">
               <form
+                id="contactForm"
+                class="php-email-form"
+                data-aos="fade-up"
+                data-aos-delay="500"
+                action="#"
+              >
+                <div class="row gy-4">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="Your Email"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <input
+                      type="text"
+                      name="subject"
+                      class="form-control"
+                      placeholder="Subject"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <textarea
+                      name="message"
+                      class="form-control"
+                      rows="4"
+                      placeholder="Message"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="loading" style="display: none">Loading...</div>
+                    <div class="error-message" style="display: none"></div>
+                    <div class="sent-message" style="display: none">
+                      Your message has been sent. Thank you!
+                    </div>
+
+                    <button type="submit">Send Message</button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- <form
                 action="forms/contact.php"
                 method="post"
                 class="php-email-form"
@@ -1520,7 +1576,7 @@
                     <button type="submit">Send Message</button>
                   </div>
                 </div>
-              </form>
+              </form> -->
             </div>
             <!-- End Contact Form -->
           </div>
@@ -1534,7 +1590,7 @@
           <!-- Company Info -->
           <div class="col-lg-4 col-md-6 footer-about">
             <a href="index.html" class="logo d-flex align-items-center">
-               <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" />
+              <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" />
               <!-- <span class="sitename">ANS</span> -->
             </a>
             <div class="footer-contact pt-3">
@@ -1625,7 +1681,7 @@
                 />
                 <input type="submit" value="Subscribe" />
               </div>
-              <div class="loading">Loading</div>
+              <div class="loading">Sending...</div>
               <div class="error-message"></div>
               <div class="sent-message">
                 Your subscription request has been sent. Thank you!
@@ -1663,5 +1719,52 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+      const form = document.getElementById("contactForm");
+      const loading = form.querySelector(".loading");
+      const errorMessage = form.querySelector(".error-message");
+      const sentMessage = form.querySelector(".sent-message");
+      const submitButton = form.querySelector("button[type=submit]");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Show loading, hide messages, hide submit button
+        loading.style.display = "block";
+        errorMessage.style.display = "none";
+        sentMessage.style.display = "none";
+        submitButton.style.display = "none";
+
+        const data = new FormData(form);
+        const params = new URLSearchParams(data).toString();
+
+        fetch(
+          "https://script.google.com/macros/s/AKfycbyD2kZzVd1Lb5u2hz-mz6-ajxJLJN_54GM4WoXWnfJIimNqpIgGFL2ePKy4YSKB31qp/exec",
+          {
+            method: "POST",
+            body: params,
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          }
+        )
+          .then((res) => {
+            if (!res.ok) throw new Error("Network response not ok");
+            return res.json();
+          })
+          .then((res) => {
+            loading.style.display = "none";
+            sentMessage.style.display = "block";
+            form.reset();
+            submitButton.style.display = "inline-block";
+          })
+          .catch((err) => {
+            loading.style.display = "none";
+            errorMessage.style.display = "block";
+            errorMessage.textContent =
+              "Error sending message. Please try again!";
+            submitButton.style.display = "inline-block";
+          });
+      });
+    </script>
   </body>
 </html>
