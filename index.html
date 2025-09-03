@@ -55,7 +55,7 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" />
-          <!-- <h1 class="sitename">ANS</h1> -->
+          <h1 class="sitename">ANS</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -1582,7 +1582,7 @@
           <div class="col-lg-4 col-md-6 footer-about">
             <a href="index.html" class="logo d-flex align-items-center">
               <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" />
-              <!-- <span class="sitename">ANS</span> -->
+              <span class="sitename">ANS</span>
             </a>
             <div class="footer-contact pt-3">
               <p>Abdullah Naif Abdullah Al Subaie Trading Est.</p>
@@ -1653,24 +1653,58 @@
           </div>
 
           <!-- Newsletter -->
+
+          <!-- Newsletter -->
           <div class="col-lg-4 col-md-12 footer-newsletter">
             <h4>Our Newsletter</h4>
             <p>
               Subscribe to receive the latest updates about our products and
               services.
             </p>
-            <form action="#" method="" class="php-email-form">
+            <form
+              id="newsletterForm"
+              class="php-email-form"
+              action="javascript:void(0);"
+              onsubmit="return false;"
+            >
               <div class="newsletter-form">
                 <input
                   type="email"
                   name="email"
                   placeholder="Enter your email"
+                  required
                 />
-                <input type="submit" value="Subscribe" disabled />
+                <input
+                  type="submit"
+                  value="Subscribe"
+                  class="subscribe-button"
+                />
+                <span
+                  class="subscribe-button sending-message"
+                  style="
+                    display: none;
+                    color: #fff;
+                    background: #ff4a17;
+                    border: 0;
+                    padding: 8px 20px;
+                    transition: 0.4s;
+                    /* border-radius: 50px; */
+                    font-weight: bold;
+                  "
+                >
+                  Sending...
+                </span>
               </div>
-              <div class="loading">Sending...</div>
-              <div class="error-message"></div>
-              <div class="sent-message">
+              <div
+                class="sent-message"
+                style="
+                  display: none;
+                  color: rgb(241, 244, 241);
+                  margin-top: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
                 Your subscription request has been sent. Thank you!
               </div>
             </form>
@@ -1804,6 +1838,56 @@
               sentMessage.style.display = "none"; // Reset to initial state
               form.reset();
               submitButton.style.display = "inline-block";
+            });
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const newsletterForm = document.getElementById("newsletterForm");
+        if (!newsletterForm) return;
+
+        const subscribeButton =
+          newsletterForm.querySelector(".subscribe-button");
+        const sendingMessage = newsletterForm.querySelector(".sending-message");
+        const sentMessage = newsletterForm.querySelector(".sent-message");
+
+        newsletterForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Show "Sending..." and hide subscribe button
+          subscribeButton.style.display = "none";
+          sendingMessage.style.display = "inline-block";
+          sentMessage.style.display = "none";
+
+          const data = new FormData(newsletterForm);
+          const params = new URLSearchParams(data).toString();
+
+          fetch(
+            "https://script.google.com/macros/s/AKfycbwbKB69d8uAxulAkTU6P2qFRKttMYX7grxihEMJq6KQEHJiTyaGPBo1hlTGLelPvg-ihQ/exec",
+            {
+              method: "POST",
+              body: params,
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            }
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              if (res && res.result === "success") {
+                sendingMessage.style.display = "none";
+                sentMessage.style.display = "block";
+                newsletterForm.reset();
+                subscribeButton.style.display = "inline-block";
+              } else {
+                throw new Error("Unexpected response");
+              }
+            })
+            .catch(() => {
+              sendingMessage.style.display = "none";
+              newsletterForm.reset();
+              subscribeButton.style.display = "inline-block";
             });
         });
       });
