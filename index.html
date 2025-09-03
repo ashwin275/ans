@@ -1461,13 +1461,17 @@
             </div>
 
             <!-- Contact Form -->
+            <!-- Contact Form -->
+
+            <!-- Contact Form -->
             <div class="col-lg-6">
               <form
                 id="contactForm"
                 class="php-email-form"
                 data-aos="fade-up"
                 data-aos-delay="500"
-                action="#"
+                action="javascript:void(0);"
+                onsubmit="return false;"
               >
                 <div class="row gy-4">
                   <div class="col-md-6">
@@ -1477,6 +1481,12 @@
                       class="form-control"
                       placeholder="Your Name"
                       required
+                      style="
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        width: 100%;
+                      "
                     />
                   </div>
                   <div class="col-md-6">
@@ -1486,6 +1496,12 @@
                       class="form-control"
                       placeholder="Your Email"
                       required
+                      style="
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        width: 100%;
+                      "
                     />
                   </div>
                   <div class="col-md-12">
@@ -1495,6 +1511,12 @@
                       class="form-control"
                       placeholder="Subject"
                       required
+                      style="
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        width: 100%;
+                      "
                     />
                   </div>
                   <div class="col-md-12">
@@ -1504,79 +1526,48 @@
                       rows="4"
                       placeholder="Message"
                       required
+                      style="
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        width: 100%;
+                      "
                     ></textarea>
                   </div>
                   <div class="col-md-12 text-center">
-                    <div class="loading" style="display: none">Loading...</div>
-                    <div class="error-message" style="display: none"></div>
-                    <div class="sent-message" style="display: none">
+                    <div
+                      class="sent-message"
+                      style="
+                        display: none;
+                        color: rgb(241, 244, 241);
+                        margin-top: 10px;
+                        font-weight: bold;
+                        font-size: 16px;
+  
+                      "
+                    >
                       Your message has been sent. Thank you!
                     </div>
-
-                    <button type="submit">Send Message</button>
+                    <button
+                      type="submit"
+                      class="send-button"
+                      
+                    >
+                      Send Message
+                    </button>
+                    <span
+                      class="send-button sending-message"
+                      style="
+               
+                    display: none; color: #fff; background: #ff4a17; border: 0; padding: 10px 30px; transition: 0.4s; border-radius: 50px; font-weight: bold;
+    
+                      "
+                    >
+                      Sending...
+                    </span>
                   </div>
                 </div>
               </form>
-
-              <!-- <form
-                action="forms/contact.php"
-                method="post"
-                class="php-email-form"
-                data-aos="fade-up"
-                data-aos-delay="500"
-              >
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <input
-                      type="text"
-                      name="name"
-                      class="form-control"
-                      placeholder="Your Name"
-                      required=""
-                    />
-                  </div>
-
-                  <div class="col-md-6">
-                    <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      placeholder="Your Email"
-                      required=""
-                    />
-                  </div>
-
-                  <div class="col-md-12">
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="subject"
-                      placeholder="Subject"
-                      required=""
-                    />
-                  </div>
-
-                  <div class="col-md-12">
-                    <textarea
-                      class="form-control"
-                      name="message"
-                      rows="4"
-                      placeholder="Message"
-                      required=""
-                    ></textarea>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Your message has been sent. Thank you!
-                    </div>
-
-                    <button type="submit">Send Message</button>
-                  </div>
-                </div>
-              </form> -->
             </div>
             <!-- End Contact Form -->
           </div>
@@ -1668,18 +1659,14 @@
               Subscribe to receive the latest updates about our products and
               services.
             </p>
-            <form
-              action="forms/newsletter.php"
-              method="post"
-              class="php-email-form"
-            >
+            <form action="#" method="" class="php-email-form">
               <div class="newsletter-form">
                 <input
                   type="email"
                   name="email"
                   placeholder="Enter your email"
                 />
-                <input type="submit" value="Subscribe" />
+                <input type="submit" value="Subscribe" disabled />
               </div>
               <div class="loading">Sending...</div>
               <div class="error-message"></div>
@@ -1721,49 +1708,104 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-      const form = document.getElementById("contactForm");
-      const loading = form.querySelector(".loading");
-      const errorMessage = form.querySelector(".error-message");
-      const sentMessage = form.querySelector(".sent-message");
-      const submitButton = form.querySelector("button[type=submit]");
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contactForm");
+        const errorMessage = form.querySelector(".error-message"); // Kept for reference, not used
+        const sentMessage = form.querySelector(".sent-message");
+        const submitButton = form.querySelector(".send-button");
+        const sendingMessage = form.querySelector(".sending-message");
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+        // Debug: Verify elements exist
+        if (!form) {
+          console.error("Form with ID 'contactForm' not found");
+          return;
+        }
+        if (!submitButton || !sendingMessage) {
+          console.error("Submit button or sending message not found");
+          return;
+        }
 
-        // Show loading, hide messages, hide submit button
-        loading.style.display = "block";
-        errorMessage.style.display = "none";
-        sentMessage.style.display = "none";
-        submitButton.style.display = "none";
+        // Enable submit button
+        submitButton.disabled = false;
+        console.log("Submit button enabled");
 
-        const data = new FormData(form);
-        const params = new URLSearchParams(data).toString();
+        form.addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          e.stopPropagation(); // Stop event bubbling
+          console.log(
+            "Form submission intercepted, sending to Google Apps Script"
+          );
 
-        fetch(
-          "https://script.google.com/macros/s/AKfycbyD2kZzVd1Lb5u2hz-mz6-ajxJLJN_54GM4WoXWnfJIimNqpIgGFL2ePKy4YSKB31qp/exec",
-          {
-            method: "POST",
-            body: params,
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          }
-        )
-          .then((res) => {
-            if (!res.ok) throw new Error("Network response not ok");
-            return res.json();
-          })
-          .then((res) => {
-            loading.style.display = "none";
-            sentMessage.style.display = "block";
-            form.reset();
-            submitButton.style.display = "inline-block";
-          })
-          .catch((err) => {
-            loading.style.display = "none";
-            errorMessage.style.display = "block";
-            errorMessage.textContent =
-              "Error sending message. Please try again!";
-            submitButton.style.display = "inline-block";
-          });
+          // Show sending message, hide button and other messages
+          console.log("Showing sending message, hiding button");
+          submitButton.style.display = "none";
+          sendingMessage.style.display = "inline-block";
+          sentMessage.style.display = "none";
+
+          // Verify sending message is visible
+          console.log(
+            "Sending message display style:",
+            window.getComputedStyle(sendingMessage).display
+          );
+
+          const data = new FormData(form);
+          const params = new URLSearchParams(data).toString();
+
+          fetch(
+            "https://script.google.com/macros/s/AKfycbyD2kZzVd1Lb5u2hz-mz6-ajxJLJN_54GM4WoXWnfJIimNqpIgGFL2ePKy4YSKB31qp/exec",
+            {
+              method: "POST",
+              body: params,
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              mode: "cors",
+              redirect: "follow",
+              credentials: "omit",
+            }
+          )
+            .then((res) => {
+              console.log("Fetch response:", {
+                status: res.status,
+                ok: res.ok,
+                type: res.type,
+                redirected: res.redirected,
+              });
+              if (!res.ok) {
+                return res.text().then((text) => {
+                  throw new Error(
+                    `Network response not ok: ${res.status}, ${text}`
+                  );
+                });
+              }
+              return res.json().catch((err) => {
+                console.error("JSON parsing error:", err);
+                return res.text().then((text) => {
+                  throw new Error(`Invalid JSON response: ${text}`);
+                });
+              });
+            })
+            .then((res) => {
+              console.log("Parsed response:", res);
+              if (res && typeof res === "object" && res.result === "success") {
+                console.log(
+                  "Hiding sending message, showing success and button"
+                );
+                sendingMessage.style.display = "none";
+                sentMessage.style.display = "block";
+                form.reset();
+                submitButton.style.display = "inline-block";
+              } else {
+                throw new Error("Unexpected response: " + JSON.stringify(res));
+              }
+            })
+            .catch((err) => {
+              console.error("Fetch error:", err.message);
+              console.log("Hiding sending message, resetting UI silently");
+              sendingMessage.style.display = "none";
+              sentMessage.style.display = "none"; // Reset to initial state
+              form.reset();
+              submitButton.style.display = "inline-block";
+            });
+        });
       });
     </script>
   </body>
