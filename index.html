@@ -68,56 +68,37 @@
   </style>
 
   <body class="index-page">
-    <header id="header" class="header d-flex align-items-center fixed-top">
-      <div
-        class="container-fluid container-xl position-relative d-flex align-items-center"
-      >
-        <a href="index.html" class="logo d-flex align-items-center me-auto">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" />
-          <h1 class="sitename">ANS</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <!-- <li><a href="#team">Team</a></li> -->
-            <!-- <li class="dropdown">
-              <a href="#"
-                ><span>Dropdown</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i
-              ></a>
-              <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown">
-                  <a href="#"
-                    ><span>Deep Dropdown</span>
-                    <i class="bi bi-chevron-down toggle-dropdown"></i
-                  ></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-              </ul>
-            </li> -->
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-        <a class="cta-btn" href="index.html#about">Get Started</a>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+  <div
+    class="container-fluid container-xl position-relative d-flex align-items-center"
+  >
+    <a href="index.html" class="logo d-flex flex-column align-items-center me-auto text-center">
+      <!-- Logo + Text -->
+      <div class="d-flex align-items-center">
+        <img src="assets/img/logo2.png" alt="ANS" class="img-fluid" style="max-height: 40px; margin-right: 8px;" />
+        <h1 class="sitename mb-0">ANS</h1>
       </div>
-    </header>
+      <!-- Locations -->
+      <small style="font-size: 14px; color: #f2f1f1; margin: 10px;">
+        Saudi Arabia <span style="font-size:20px; color:#f2f1f1;">.</span> Bahrain
+      </small>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <a class="cta-btn" href="index.html#about">Get Started</a>
+  </div>
+</header>
+
 
     <main class="main">
       <!-- Hero Section -->
@@ -1422,103 +1403,106 @@
         <div class="container" data-aos="fade-up" data-aos-delay="100">
           <div class="row gy-4">
             <div class="col-lg-6">
-              <div class="row gy-4">
-                <!-- Address -->
-                <div class="col-lg-12">
-                  <div
-                    class="info-item d-flex flex-column justify-content-center align-items-center text-center"
-                    data-aos="fade-up"
-                    data-aos-delay="200"
-                  >
-                    <i class="bi bi-geo-alt"></i>
-                    <h3>Address / العنوان</h3>
+           <div class="row gy-4">
+  <!-- Address -->
+  <div class="col-lg-12">
+    <div
+      class="info-item d-flex flex-column justify-content-center align-items-center text-center"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      <i class="bi bi-geo-alt"></i>
+      <h3>Address / العنوان</h3>
 
-                    <!-- Saudi Address -->
-                    <p>
-                      Abdullah Naif Abdullah Al Subaie Trading Est.<br />
-                      P.O. Box 3925 - Dammam 32247<br />
-                      Al Amamrah Area - Oqha Bin Nafeh<br />
-                      Kingdom of Saudi Arabia
-                    </p>
-                    <p dir="rtl" style="margin-top: 10px">
-                      مؤسسة عبدالله نايف عبدالله السبيعي التجارية<br />
-                      ص.ب 3925 – الدمام 32247<br />
-                      حي العمامرة – عقبة بن نافع<br />
-                      المملكة العربية السعودية
-                    </p>
+      <!-- Saudi Address -->
+      <h4 style="margin-top: 15px; font-weight: bold; ">Saudi Arabia</h4>
+      <p>
+        Abdullah Naif Abdullah Al Subaie Trading Est.<br />
+        P.O. Box 3925 - Dammam 32247<br />
+        Al Amamrah Area - Oqha Bin Nafeh<br />
+        Kingdom of Saudi Arabia
+      </p>
+      <p dir="rtl" style="margin-top: 10px">
+        مؤسسة عبدالله نايف عبدالله السبيعي التجارية<br />
+        ص.ب 3925 – الدمام 32247<br />
+        حي العمامرة – عقبة بن نافع<br />
+        المملكة العربية السعودية
+      </p>
 
-                    <hr
-                      style="
-                        width: 60%;
-                        margin: 20px 0;
-                        border: 1px dashed #ccc;
-                      "
-                    />
+      <hr
+        style="
+          width: 60%;
+          margin: 20px 0;
+          border: 1px dashed #ccc;
+        "
+      />
 
-                    <!-- Bahrain Address -->
-                    <p>
-                      CR: 186064-1 <br />
-                      Office: 318, Building: 135 <br />
-                      Road: 1702, Block: 317 <br />
-                      Manama
-                    </p>
-                    <p dir="rtl" style="margin-top: 10px">
-                      السجل التجاري: 186064-1 <br />
-                      مكتب: 318، مبنى: 135 <br />
-                      طريق: 1702، مجمع: 317 <br />
-                      المنامة
-                    </p>
-                  </div>
-                </div>
-                <!-- End Address -->
+      <!-- Bahrain Address -->
+      <h4 style="margin-top: 15px; font-weight: bold;">Bahrain</h4>
+      <p>
+        CR: 186064-1 <br />
+        Office: 318, Building: 135 <br />
+        Road: 1702, Block: 317 <br />
+        Manama
+      </p>
+      <p dir="rtl" style="margin-top: 10px">
+        السجل التجاري: 186064-1 <br />
+        مكتب: 318، مبنى: 135 <br />
+        طريق: 1702، مجمع: 317 <br />
+        المنامة
+      </p>
+    </div>
+  </div>
+  <!-- End Address -->
 
-                <!-- Phone -->
-                <div class="col-md-6">
-                  <div
-                    class="info-item d-flex flex-column justify-content-center align-items-center text-center"
-                    data-aos="fade-up"
-                    data-aos-delay="300"
-                  >
-                    <i class="bi bi-telephone"></i>
-                    <h3>Call Us</h3>
-                    <p>+966 13 503 7393</p>
-                    <p>+966 54 319 3515</p>
-                    <hr
-                      style="
-                        width: 60%;
-                        margin: 10px 0;
-                        border: 1px dashed #ccc;
-                      "
-                    />
-                    <p>+973 39821760</p>
-                    <p></p>
-                  </div>
-                </div>
-                <!-- End Phone -->
+  <!-- Phone -->
+  <div class="col-md-6">
+    <div
+      class="info-item d-flex flex-column justify-content-center align-items-center text-center"
+      data-aos="fade-up"
+      data-aos-delay="300"
+    >
+      <i class="bi bi-telephone"></i>
+      <h3>Call Us</h3>
+      <p>+966 13 503 7393</p>
+      <p>+966 54 319 3515</p>
+      <hr
+        style="
+          width: 60%;
+          margin: 10px 0;
+          border: 1px dashed #ccc;
+        "
+      />
+      <p>+973 39821760</p>
+      <p></p>
+    </div>
+  </div>
+  <!-- End Phone -->
 
-                <!-- Email -->
-                <div class="col-md-6">
-                  <div
-                    class="info-item d-flex flex-column justify-content-center align-items-center text-center"
-                    data-aos="fade-up"
-                    data-aos-delay="400"
-                  >
-                    <i class="bi bi-envelope"></i>
-                    <h3>Email Us</h3>
-                    <p>sales@an-alsubaie.com.sa</p>
-                    <p>yaser@an-alsubaie.com.sa</p>
-                    <hr
-                      style="
-                        width: 60%;
-                        margin: 10px 0;
-                        border: 1px dashed #ccc;
-                      "
-                    />
-                    <p>yasyaser@gmail.com</p>
-                  </div>
-                </div>
-                <!-- End Email -->
-              </div>
+  <!-- Email -->
+  <div class="col-md-6">
+    <div
+      class="info-item d-flex flex-column justify-content-center align-items-center text-center"
+      data-aos="fade-up"
+      data-aos-delay="400"
+    >
+      <i class="bi bi-envelope"></i>
+      <h3>Email Us</h3>
+      <p>sales@an-alsubaie.com.sa</p>
+      <p>yaser@an-alsubaie.com.sa</p>
+      <hr
+        style="
+          width: 60%;
+          margin: 10px 0;
+          border: 1px dashed #ccc;
+        "
+      />
+      <p>yasyaser@gmail.com</p>
+    </div>
+  </div>
+  <!-- End Email -->
+</div>
+
             </div>
 
             <!-- Contact Form -->
